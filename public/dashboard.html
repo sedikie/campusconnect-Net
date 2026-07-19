@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — CampusConnect</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/index.html" class="brand" style="color:#fff;"><span class="pin-dot"></span> CampusConnect</a>
+    <div class="nav-links" id="nav-auth"></div>
+  </nav>
+
+  <div class="dash-topbar">
+    <h1>Groups</h1>
+    <button class="btn btn-gold btn-small" id="open-create-modal">+ Create group</button>
+  </div>
+
+  <main class="dash-body">
+    <div class="tabs">
+      <button class="tab active" data-tab="all">All groups</button>
+      <button class="tab" data-tab="mine">My groups</button>
+    </div>
+
+    <div id="group-list" class="group-list">
+      <p>Loading groups…</p>
+    </div>
+  </main>
+
+  <!-- Create group modal -->
+  <div class="modal-backdrop" id="create-modal">
+    <div class="modal-card">
+      <h2>Create a group</h2>
+      <p class="sub" style="color:var(--ink-soft);font-size:13.5px;margin:0 0 16px;">
+        Give it a name and let classmates find it.
+      </p>
+
+      <div class="alert error" id="create-error"></div>
+
+      <form id="create-form">
+        <div class="field">
+          <label for="g-name">Group name</label>
+          <input type="text" id="g-name" placeholder="e.g. BSCS 225 · Database Design" required />
+        </div>
+        <div class="field">
+          <label for="g-category">Category</label>
+          <select id="g-category">
+            <option value="Course">Course</option>
+            <option value="Department">Department</option>
+            <option value="Interest" selected>Interest</option>
+            <option value="General">General</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="g-description">Description</label>
+          <textarea id="g-description" rows="3" placeholder="What's this group about?"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancel-create">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

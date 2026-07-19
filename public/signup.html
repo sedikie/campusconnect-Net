@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up — CampusConnect</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/index.html" class="brand" style="color:#fff;"><span class="pin-dot"></span> CampusConnect</a>
+    <div class="nav-links" id="nav-auth"></div>
+  </nav>
+
+  <section class="auth-page">
+    <div class="wrap-narrow">
+      <div class="auth-card">
+        <h1>Create your account</h1>
+        <p class="sub">Join your classmates on CampusConnect.</p>
+
+        <div class="alert error" id="error-box"></div>
+
+        <form id="signup-form">
+          <div class="field">
+            <label for="full_name">Full name</label>
+            <input type="text" id="full_name" name="full_name" placeholder="e.g. Sedikie Kamara" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@mmtu.edu.sl" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="programme">Programme</label>
+              <input type="text" id="programme" name="programme" placeholder="e.g. BED CDS" />
+            </div>
+            <div class="field">
+              <label for="campus">Campus</label>
+              <input type="text" id="campus" name="campus" placeholder="e.g. Goderich" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Create account</button>
+          </div>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="/login.html">Log in</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const form = document.getElementById("signup-form");
+    const errorBox = document.getElementById("error-box");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBox.style.display = "none";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Creating account…";
+
+      try {
+        await api("/auth/signup", {
+          method: "POST",
+          body: {
+            full_name: form.full_name.value.trim(),
+            email: form.email.value.trim(),
+            password: form.password.value,
+            programme: form.programme.value.trim(),
+            campus: form.campus.value.trim(),
+          },
+        });
+        window.location.href = "/dashboard.html";
+      } catch (err) {
+        errorBox.textContent = err.message;
+        errorBox.style.display = "block";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Create account";
+      }
+    });
+  </script>
+</body>
+</html>

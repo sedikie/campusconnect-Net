@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group — CampusConnect</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/index.html" class="brand" style="color:#fff;"><span class="pin-dot"></span> CampusConnect</a>
+    <div class="nav-links" id="nav-auth"></div>
+  </nav>
+
+  <section class="group-banner">
+    <div class="wrap">
+      <div>
+        <a href="/dashboard.html" class="back-link">← Back to all groups</a>
+        <h1 id="group-name">Loading…</h1>
+        <p id="group-desc"></p>
+      </div>
+      <div>
+        <span class="eyebrow" id="group-meta" style="color:#E4D3B4;"></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <details class="post-composer" id="composer" open>
+      <summary>Start a discussion in this group</summary>
+      <div class="composer-body">
+        <div class="alert error" id="post-error"></div>
+        <form id="post-form">
+          <div class="field">
+            <label for="p-title">Title</label>
+            <input type="text" id="p-title" placeholder="What's this about?" required />
+          </div>
+          <div class="field">
+            <label for="p-content">Content</label>
+            <textarea id="p-content" rows="4" placeholder="Share your question, notes, or update…" required></textarea>
+          </div>
+          <div class="field">
+            <label for="p-media">Attach a file (optional)</label>
+            <input type="file" id="p-media" />
+            <div id="p-media-name" style="font-size:12.5px;color:var(--ink-soft);margin-top:4px;"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+      </div>
+    </details>
+
+    <div id="post-list" class="post-list">
+      <p>Loading posts…</p>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/group.js"></script>
+</body>
+</html>
